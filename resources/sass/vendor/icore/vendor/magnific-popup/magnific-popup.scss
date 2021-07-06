@@ -1,0 +1,14 @@
+.mfp-content
+{
+    .mfp-img {
+        max-height: 100% !important;
+    }
+
+    @media (min-width: 768px) {
+        .mfp-figure {
+            max-width: 90% !important;
+            margin: 0 auto;
+            position: relative;
+        }
+    }
+}

@@ -1,0 +1,67 @@
+.depth-0 {
+    margin-left: 0;
+}
+
+.depth-1 {
+    margin-left: 1rem;
+    @include media-breakpoint-up(sm) {
+        margin-left: 2rem;
+    }
+}
+
+.depth-2 {
+    margin-left: 2rem;
+    @include media-breakpoint-up(sm) {
+        margin-left: 4rem;
+    }
+}
+
+.depth-3 {
+    margin-left: 3rem;
+    @include media-breakpoint-up(sm) {
+        margin-left: 6rem;
+    }
+}
+
+.depth-4 {
+    margin-left: 4rem;
+    @include media-breakpoint-up(sm) {
+        margin-left: 8rem;
+    }
+}
+
+.depth-5 {
+    margin-left: 5rem;
+    @include media-breakpoint-up(sm) {
+        margin-left: 10rem;
+    }
+}
+
+.z-900 {
+    z-index: 900;
+}
+
+.hide {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@include create-breakpoint-class('w', '25') {
+    width: 25% !important; 
+}
+
+@include create-breakpoint-class('w', '50') {
+    width: 50% !important; 
+}
+
+@include create-breakpoint-class('w', '75') {
+    width: 75% !important; 
+}
+
+@include create-breakpoint-class('w', '100') {
+    width: 100% !important; 
+}
