@@ -37,10 +37,27 @@ return [
         ],
 
         'reasons' => [
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	    '101 Opis strony niezgodny z Regulaminem. Więcej na: https://alg.pl/e/#101',
+	    '102 Powielona treść opisu. Więcej na: https://alg.pl/e/#102',
+	    '103 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#103',
+	    '105 Switryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#105',
+	    '201 Opis strony niezgodny z regulaminem. Więcej na: https://alg.pl/e/#201',
+	    '202 Powielona treść opisu. Więcej na: https://alg.pl/e/#202',
+	    '203 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#203',
+	    '205 Witryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#205',
+	    '301 Subdomena. Więcej na: https://alg.pl/e/#301',
+	    '302 Strona niezgodna z regulaminem. Więcej na: https://alg.pl/e/#302',
+	    '303 Ta sama strona pod innym adresem. Więcej na: https://alg.pl/e/#303',
+	    '304 Bezpłatny alias internetowy. Więcej na: https://alg.pl/e/#304',
+	    '305 Przekierowanie na inny adres. Więcej na: https://alg.pl/e/#305',
+	    '306 Strona w budowie lub wizytówka. Więcej na: https://alg.pl/e/#306',
+	    '501 Auto-blog. Więcej na: https://alg.pl/e/#501',
+	    '502 Zaplecze. Więcej na: https://alg.pl/e/#502',
+	    '503 Strona SP. Więcej na: https://alg.pl/e/#503',
+	    '504 MFA (Made for AdSense). Więcej na: https://alg.pl/e/#504',
+	    '601 Usunięto na życzenie właściciela. Więcej na: https://alg.pl/e/#601',
+	    '602 Próba dodania istniejącej strony. Więcej na: https://alg.pl/e/#602',
+	    '603 Spam. Więcej na: https://alg.pl/e/#603'
         ],
 
         'thumbnail' => [

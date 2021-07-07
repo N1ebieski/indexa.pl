@@ -18,9 +18,6 @@
         id="field.{{ $field->id }}"
         name="field[{{ $field->id }}]"
     >
-        @if (!$field->isRequired())
-        <option value="">{{ trans('idir::fields.choose') }}</option>
-        @endif
         @foreach ($field->options->options as $option)
         <option 
             value="{{ $option }}"

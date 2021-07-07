@@ -1,0 +1,93 @@
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # SEOKatalog import redirect
+    RewriteRule ^([-_+!~,;*'()$a-zA-Z0-9]+)-p([0-9]+)/strona,([0-9]+).html /import/kategorie/$2?page=$3 [L,R=301]
+    RewriteRule ^([-_+!~,;*'()$a-zA-Z0-9]+)-p([0-9]+).html /import/kategorie/$2 [L,R=301]
+    RewriteRule ^([-_+!~,;*'()$a-zA-Z0-9]+)-s([0-9]+).html /import/$2 [L,R=301]
+    RewriteCond %{QUERY_STRING} ^click=([0-9]+)$
+    RewriteRule ^ /import/%1 [L,R=301,QSD]
+
+    # Redirect index.php to root
+    RewriteCond %{THE_REQUEST} ^.*/index\.php
+    RewriteRule ^index.php$ / [R=301,L]
+    RewriteRule ^index.php/(.*)$ /$1 [R=301,L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+#<ifModule mod_headers.c>
+#    Header set Connection keep-alive
+#</ifModule>
+
+#<IfModule mod_expires.c>
+#    # Enable expiration control
+#    ExpiresActive On
+#
+#    # Default expiration: 1 hour after request
+#    # ExpiresDefault "now plus 1 hour"
+#
+#    # CSS and JS expiration: 1 week after request
+#    ExpiresByType text/css "now plus 1 week"
+#    ExpiresByType application/javascript "now plus 1 week"
+#    ExpiresByType application/x-javascript "now plus 1 week"
+#
+#    # Image files expiration: 1 month after request
+#    ExpiresByType image/bmp "now plus 1 month"
+#    ExpiresByType image/gif "now plus 1 month"
+#    ExpiresByType image/jpeg "now plus 1 month"
+#    ExpiresByType image/jp2 "now plus 1 month"
+#    ExpiresByType image/pipeg "now plus 1 month"
+#    ExpiresByType image/png "now plus 1 month"
+#    ExpiresByType image/svg+xml "now plus 1 month"
+#    ExpiresByType image/tiff "now plus 1 month"
+#    ExpiresByType image/vnd.microsoft.icon "now plus 1 month"
+#    ExpiresByType image/x-icon "now plus 1 month"
+#    ExpiresByType image/ico "now plus 1 month"
+#    ExpiresByType image/icon "now plus 1 month"
+#    ExpiresByType text/ico "now plus 1 month"
+#    ExpiresByType application/ico "now plus 1 month"
+#    ExpiresByType image/vnd.wap.wbmp "now plus 1 month"
+#    ExpiresByType application/vnd.wap.wbxml "now plus 1 month"
+#    ExpiresByType application/smil "now plus 1 month"
+#
+#    # Audio files expiration: 1 month after request
+#    ExpiresByType audio/basic "now plus 1 month"
+#    ExpiresByType audio/mid "now plus 1 month"
+#    ExpiresByType audio/midi "now plus 1 month"
+#    ExpiresByType audio/mpeg "now plus 1 month"
+#    ExpiresByType audio/x-aiff "now plus 1 month"
+#    ExpiresByType audio/x-mpegurl "now plus 1 month"
+#    ExpiresByType audio/x-pn-realaudio "now plus 1 month"
+#    ExpiresByType audio/x-wav "now plus 1 month"
+#
+#    # Movie files expiration: 1 month after request
+#    ExpiresByType application/x-shockwave-flash "now plus 1 month"
+#    ExpiresByType x-world/x-vrml "now plus 1 month"
+#    ExpiresByType video/x-msvideo "now plus 1 month"
+#    ExpiresByType video/mpeg "now plus 1 month"
+#    ExpiresByType video/mp4 "now plus 1 month"
+#    ExpiresByType video/quicktime "now plus 1 month"
+#    ExpiresByType video/x-la-asf "now plus 1 month"
+#    ExpiresByType video/x-ms-asf "now plus 1 month"
+#</IfModule>

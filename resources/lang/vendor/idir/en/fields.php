@@ -22,7 +22,6 @@ return [
     ],
     'title' => 'Title',
     'desc' => 'Description',
-    'choose' => 'Select from the list',
     'choose_type' => 'Select the field type',
     'min' => [
         'label' => 'Minimum number of characters',

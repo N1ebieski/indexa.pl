@@ -16,6 +16,7 @@ package-lock.json
 .editorconfig
 /logs
 /private_html
+/public
 /public_ftp
 /public_html/cgi-bin
 /public_html/storage

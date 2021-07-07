@@ -34,8 +34,11 @@
     <h3 class="h5 border-bottom pb-2">
         {{ trans('idir::dirs.route.edit.2') }}
     </h3>
+<div class="progress mb-4">
+  <div class="progress-bar" role="progress-bar progress-bar-striped progress-bar-animated" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+</div>
     <div class="row mb-4">
-        <div class="col-md-8">
+        <div class="col-md-8 ramka">
             <form 
                 method="post" 
                 action="{{ route('web.dir.update_2', [$dir->id, $group->id]) }}"
@@ -106,7 +109,7 @@
                         <i 
                             data-toggle="tooltip" 
                             data-placement="top"
-                            title="{{ trans('idir::dirs.tags.tooltip', ['max_tags' => config('idir.dir.max_tags'), 'max_chars' => config('icore.tag.max_chars')]) }}"
+                            title="{{ trans('idir::dirs.tags.tooltip', ['max_tags' => $max_tags = config('idir.dir.max_tags')]) }}"
                             class="far fa-question-circle"
                         ></i>
                     </label>
@@ -116,8 +119,7 @@
                         class="form-control tagsinput {{ $isValid('tags') }}"
                         value="{{ old('tags', session("dirId.{$dir->id}.tags") !== null ? implode(',', session("dirId.{$dir->id}.tags")) : null) }}"
                         placeholder="{{ trans('idir::dirs.tags.placeholder') }}" 
-                        data-max="{{ config('idir.dir.max_tags') }}"
-                        data-max-chars="{{ config('icore.tag.max_chars') }}"
+                        data-max="{{ $max_tags }}"
                     >
                     @includeWhen($errors->has('tags'), 'icore::admin.partials.errors', ['name' => 'tags'])
                 </div>
@@ -215,7 +217,7 @@
             </form>
         </div>
         <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card">
                 @include('idir::web.dir.partials.group', ['group' => $group])
             </div>
         </div>

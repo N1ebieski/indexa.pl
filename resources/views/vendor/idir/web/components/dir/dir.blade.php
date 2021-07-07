@@ -8,11 +8,7 @@
         <div class="card h-100">
             @if ($dir->url !== null)
             <div>
-                <img 
-                    data-src="{{ $dir->thumbnail_url }}" 
-                    class="lazy img-fluid mx-auto d-block"
-                    alt="{{ $dir->title }}"
-                >
+                <img data-src="{{ $dir->thumbnail_url }}" class="lazy img-fluid mx-auto d-block" alt="{{ $dir->title }}">
             </div>
             @endif
             <div class="card-body">

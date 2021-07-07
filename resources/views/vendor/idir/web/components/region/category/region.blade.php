@@ -1,6 +1,4 @@
-<h3 class="h5">
-    {{ trans('idir::regions.regions') }}
-</h3>
+<div class="mb-3 tagis rounded">
 <div id="map-poland">
     <ul class="poland" style="display:none">
         @foreach ($regions as $r)
@@ -14,4 +12,5 @@
         </li>
         @endforeach
     </ul>
+</div>
 </div>

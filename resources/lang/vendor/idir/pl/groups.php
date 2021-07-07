@@ -48,21 +48,34 @@ return [
         Group::OBLIGATORY_URL => 'obowiązkowy'
     ],
     'apply_status' => [
-        'label' => 'Status po dodaniu/edycji wpisu',
+        'label' => 'Status po dodaniu wpisu',
         Group::APPLY_INACTIVE => 'oczekujący na moderację',
         Group::APPLY_ACTIVE => 'natychmiast aktywny'
     ],
+    'days' => 'Dni',
+    'price' => 'Cena',
     'max_models' => 'Maksymalna ilość wpisów w grupie',
     'max_models_daily' => 'Dzienna maksymalna ilość wpisów w grupie',
     'empty' => 'Brak dostępnych grup',
     'payment' => [
-        'label' => 'Płatność',
-        Group::WITHOUT_PAYMENT => 'darmowa',
-        Group::PAYMENT => 'płatna'
+        'index' => 'Płatność',
+        'transfer' => 'Płatności przelewem',
+        'code_sms' => 'Płatności przez kody SMS',
+        'code_transfer' => 'Płatności przez kody przelewem',
+        '0' => 'darmowy',
+        '1' => 'płatny'
     ],
+    'price_from' => 'płatny już od :price zł. za :days :limit' ,
+    'unlimited' => 'nieograniczony czasowo',
     'alt' => [
-        'label' => 'Alternatywna grupa',
+        'index' => 'Alternatywna grupa',
         'tooltip' => 'Grupa do której spadnie wpis w przypadku braku przedłużenia okresu czasowego.',
-        'null' => 'Brak (po upływie czasu nastąpi dezaktywacja ze statusem "oczekujący na płatność")'
-    ]
+        'null' => 'Brak (po upływie czasu nastąpi deaktywacja ze statusem "oczekujący na płatność")'
+    ],
+    'code_sms' => 'Kod SMS',
+    'code_transfer' => 'Kod ID',
+    'token' => 'Token',
+    'number' => 'Numer',
+    'codes' => 'Kody manualne',
+    'sync_codes' => 'Synchronizuj kody'
 ];

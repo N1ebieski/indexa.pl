@@ -1,15 +1,8 @@
 @section('logo')
 <div id="navbarLogo" class="flex-grow-1 mr-2">
-    <a href="/" class="navbar-brand" title="{{ config('app.name') }}">
-        <img 
-            src="{{ asset('svg/vendor/idir/logo.svg') }}" 
-            class="pb-1 logo"
-            alt="{{ config('app.name_short') }}" 
-            title="{{ config('app.name') }}"
-        >
-        <span class="pl-1 d-none d-lg-inline">
-            {{ config('app.name_short') }}
-        </span>
+    <a href="/" class="navbar-brand" title="{{ config('app.name') }}" alt="{{ config('app.name_short') }}" title="{{ config('app.name_short') }}">
+        <img src="https://cdn.alg.pl/katalog/logo/{{ config('app.name_short') }}-logo.svg" class="pb-3 logo logo-{{ config('app.name_short') }}" alt="{{ config('app.name_short') }}" title="{{ config('app.name') }}">
+        <span class="domena-{{ config('app.name_short') }}">{{ config('app.name_short') }}</span>
     </a>
 </div>
 @endsection
@@ -22,13 +15,13 @@
 
 @section('search-toggler')
 <a href="#" class="nav-link search-toggler" role="button">
-    <i class="fa fa-lg fa-search"></i>
+	    <i class="fa fa-lg fa-search lupka-{{ config('app.name_short') }}"></i>
 </a>
 @endsection
 
-<nav class="navbar menu navbar-expand-md navbar-light bg-light fixed-top border-bottom">
+<nav class="navbar bd-{{ config('app.name_short') }} menu navbar-expand-md navbar-light fixed-top border-bottom">
     <div class="container">
-        @if (!$isUrl(route('web.home.index')))
+        
         <div class="d-flex flex-grow-1 navbar-search pr-3 pr-md-0">
             @yield('logo')
             <form 
@@ -48,20 +41,15 @@
                         value="{{ $search ?? null }}"
                         autocomplete="off"
                     >
-                    <select class="custom-select" name="source">
-                        <option value="post" {{ $isRouteContains('post', 'selected') }}>
-                            {{ trans('icore::search.post.post') }}
-                        </option>
-                        <option value="dir" {{ $isRouteContains('dir', 'selected') }}>
-                            {{ trans('idir::search.dir.dir') }}
-                        </option>
-                    </select>
+
+  
+                    <input type="hidden" name="source" value="dir">
                     <span class="input-group-append">
                         <button 
                             class="btn btn-outline-secondary border border-left-0"
                             type="submit" {{ isset($search) ?: 'disabled' }}
                         >
-                            <i class="fa fa-search"></i>
+                            <i class="fa fa-search lupka-{{ config('app.name_short') }}"></i>
                         </button>
                     </span>
                 </div>
@@ -75,29 +63,31 @@
             </div>
             @yield('navbar-toggler')
         </div>
-        @else
-        <div class="d-flex flex-grow-1 pr-3 pr-md-0">
-            @yield('logo')
-            @yield('navbar-toggler')
-        </div>
-        @endif
+
+
+
         <div class="navbar-collapse scroll collapse flex-grow-0 justify-content-end">
             @render('icore::page.menuComponent', [
-                'limit' => 3
+                'limit' => 0
             ])
             <ul class="navbar-nav pr-3 pr-md-0">
-                @if (!$isUrl(route('web.home.index')))
+
                 <li class="nav-item d-none d-md-inline mr-1">
                     @yield('search-toggler')
                 </li>
-                @endif
+
                 @if (app('router')->has('web.dir.create_1'))
                 <li class="nav-item mr-sm-0 mr-md-2 mb-2 mb-md-0">
                     <a 
-                        class="nav-link btn btn-sm btn-primary text-white"
+                        class="btn btn-bd-download reg up 
+						 
+						
+
+						
+						"
                         href="{{ route('web.dir.create_1') }}" 
                         role="button"
-                    >
+                    ><i class="fas fa-fw fa-plus"></i>
                         {{ trans('idir::dirs.route.create.index') }}
                     </a>
                 </li>
@@ -105,7 +95,7 @@
                 <li class="nav-item dropdown {{ $isRouteContains('profile') }}">
                     @auth
                     <a 
-                        class="nav-link text-nowrap" 
+                        class="btn btn-outline-light up reg" 
                         href="#" 
                         role="button" 
                         id="navbarDropdownMenuProfile"
@@ -113,7 +103,7 @@
                         aria-haspopup="true" 
                         aria-expanded="false"
                     >
-                        <i class="fas fa-fw fa-lg fa-users-cog"></i>
+                        <i class="fas fa-fw fa-lg fa-user-circle"></i>
                         <span class="d-md-none d-lg-inline">{{ auth()->user()->short_name }}</span>
                     </a>
                     <div 
@@ -150,11 +140,11 @@
                     </div>
                     @else
                     <a 
-                        class="nav-link btn btn-sm btn-outline-primary text-nowrap text-center text-primary" 
+                        class="btn btn-outline-light up reg" 
                         href="{{ route('login') }}" 
                         role="button" 
                         title="{{ trans('icore::auth.route.login') }}"
-                    >
+                    ><i class="far fa-fw fa-lg fa-user-circle"></i>
                         {{ trans('icore::auth.route.login') }}
                     </a>
                     @endauth

@@ -22,7 +22,6 @@ return [
     ],
     'title' => 'Tytuł pola',
     'desc' => 'Opis pola',
-    'choose' => 'Wybierz z listy',
     'choose_type' => 'Wybierz typ pola',
     'min' => [
         'label' => 'Minimalna ilość znaków',

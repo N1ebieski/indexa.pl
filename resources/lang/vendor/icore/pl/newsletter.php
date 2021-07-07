@@ -3,7 +3,7 @@
 use N1ebieski\ICore\Models\Newsletter;
 
 return [
-    'subscribe' => 'Subskrybuj newsletter',
+    'subscribe' => 'Najnowsze informacje o promocjach:',
     'email' => [
         'placeholder' => 'Wpisz adres email'
     ],

@@ -13,7 +13,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7 ramka2 rounded">
             @include('icore::web.partials.alerts')
             <form method="post" action="{{ url()->current() }}" id="contact">
                 @csrf
@@ -80,20 +80,19 @@
             </form>
         </div>
         <hr class="clearfix w-100 d-md-none">
-        <div class="col-md-4">
+        <div class="col-md-4 ramka2 rounded">
             <h3 class="h5">
                 {{ trans('icore::contact.details') }}:
             </h3>
             <p>
-                XXXXX XXXXXXXXXXX<br>
-                ul. XXXXXXXXXXX XX/YY<br>
-                XXXXX XX-XXX<br>
-                tel. XXX-XXX-XX-XX<br>
-                e-mail: xxxxxxx@xxxxxxxxx.pl<br>
+                <a href="https://alg.pl" target="_blank" rel="nofollow"><b>ALG.PL</b></a><br />
+                tel. <a href="tel:+48913334444">91 333 4444</a><br />
+                sms. <a href="tel:+48501805005">501 805 005</a><br />
+                e-mail: pomoc@alg.pl<br />
             </p>
             <div>
                 @render('icore::map.mapComponent', [
-                    'address_marker' => ['Chmielna 27/33, 80-748 Gdańsk']
+                    'address_marker' => ['Szczecin']
                 ])
             </div>
         </div>
