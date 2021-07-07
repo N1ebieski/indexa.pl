@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /*?page=*
+Disallow: /*?filter*
+Disallow: /admin*
+Disallow: /login*
+Disallow: /logout
+Disallow: /register
+Disallow: /password*
+Disallow: /*search*
+Disallow: /thumbnails*
+
+Sitemap: storage/vendor/icore/sitemap/sitemap.xml
+Sitemap: storage/vendor/idir/sitemap/sitemap.xml
