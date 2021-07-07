@@ -37,28 +37,27 @@ return [
         ],
 
         'reasons' => [
-'101 Opis strony niezgodny z Regulaminem. Więcej na: https://alg.pl/e/#101',
-'102 Powielona treść opisu. Więcej na: https://alg.pl/e/#102',
-'103 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#103',
-'105 Switryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#105',
-'201 Opis strony niezgodny z regulaminem. Więcej na: https://alg.pl/e/#201',
-'202 Powielona treść opisu. Więcej na: https://alg.pl/e/#202',
-'203 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#203',
-'205 Witryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#205',
-'301 Subdomena. Więcej na: https://alg.pl/e/#301',
-'302 Strona niezgodna z regulaminem. Więcej na: https://alg.pl/e/#302',
-'303 Ta sama strona pod innym adresem. Więcej na: https://alg.pl/e/#303',
-'304 Bezpłatny alias internetowy. Więcej na: https://alg.pl/e/#304',
-'305 Przekierowanie na inny adres. Więcej na: https://alg.pl/e/#305',
-'306 Strona w budowie lub wizytówka. Więcej na: https://alg.pl/e/#306',
-'501 Auto-blog. Więcej na: https://alg.pl/e/#501',
-'502 Zaplecze. Więcej na: https://alg.pl/e/#502',
-'503 Strona SP. Więcej na: https://alg.pl/e/#503',
-'504 MFA (Made for AdSense). Więcej na: https://alg.pl/e/#504',
-'601 Usunięto na życzenie właściciela. Więcej na: https://alg.pl/e/#601',
-'602 Próba dodania istniejącej strony. Więcej na: https://alg.pl/e/#602',
-'603 Spam. Więcej na: https://alg.pl/e/#603'
-
+	    '101 Opis strony niezgodny z Regulaminem. Więcej na: https://alg.pl/e/#101',
+	    '102 Powielona treść opisu. Więcej na: https://alg.pl/e/#102',
+	    '103 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#103',
+	    '105 Switryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#105',
+	    '201 Opis strony niezgodny z regulaminem. Więcej na: https://alg.pl/e/#201',
+	    '202 Powielona treść opisu. Więcej na: https://alg.pl/e/#202',
+	    '203 Nieprawidłowy adres strony. Więcej na: https://alg.pl/e/#203',
+	    '205 Witryna zgłoszona, jako dokonująca ataków. Więcej na: https://alg.pl/e/#205',
+	    '301 Subdomena. Więcej na: https://alg.pl/e/#301',
+	    '302 Strona niezgodna z regulaminem. Więcej na: https://alg.pl/e/#302',
+	    '303 Ta sama strona pod innym adresem. Więcej na: https://alg.pl/e/#303',
+	    '304 Bezpłatny alias internetowy. Więcej na: https://alg.pl/e/#304',
+	    '305 Przekierowanie na inny adres. Więcej na: https://alg.pl/e/#305',
+	    '306 Strona w budowie lub wizytówka. Więcej na: https://alg.pl/e/#306',
+	    '501 Auto-blog. Więcej na: https://alg.pl/e/#501',
+	    '502 Zaplecze. Więcej na: https://alg.pl/e/#502',
+	    '503 Strona SP. Więcej na: https://alg.pl/e/#503',
+	    '504 MFA (Made for AdSense). Więcej na: https://alg.pl/e/#504',
+	    '601 Usunięto na życzenie właściciela. Więcej na: https://alg.pl/e/#601',
+	    '602 Próba dodania istniejącej strony. Więcej na: https://alg.pl/e/#602',
+	    '603 Spam. Więcej na: https://alg.pl/e/#603'
         ],
 
         'thumbnail' => [
@@ -84,17 +83,18 @@ return [
     'field' => [
         'gus' => [
             'name' => null,
-            'street' => null,
+            'street' => 5,
             'propertyNumber' => null,
             'apartmentNumber' => null,
-            'zipCode' => null,
-            'city' => null,
-            'regions' => null,
+            'zipCode' => 6,
+            'city' => 4,
+            'regions' => 1,
             'district' => null,
             'community' => null,
-            'nip' => null,
-            'regon' => null,
-            'map' => null
+            'nip' => 9,
+            'regon' => 8,
+            'map' => null,
+            'phone' => 7
         ]
     ],
 
@@ -116,11 +116,22 @@ return [
             'driver' => 'cashbill'
         ],
 
+        'paypal_express' => [
+            'driver' => 'paypal'
+        ],
+
         'cashbill' => [
             'name' => 'CashBill',
             'url' => 'https://www.cashbill.pl',
             'rules_url' => 'https://www.cashbill.pl/download/regulaminy/Regulamin_Platnosci.pdf',
             'docs_url' => 'https://www.cashbill.pl/pobierz/dokumenty/'
+        ],
+
+        'paypal' => [
+            'name' => 'PayPal',
+            'url' => 'https://www.paypal.com',
+            'rules_url' => 'https://www.paypal.com/pl/webapps/mpp/ua/useragreement-full?locale.x=pl_PL',
+            'docs_url' => 'https://www.paypal.com/pl/webapps/mpp/ua/legalhub-full?locale.x=pl_PL'
         ]
     ]
 ];

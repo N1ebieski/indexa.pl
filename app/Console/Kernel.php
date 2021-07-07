@@ -2,7 +2,10 @@
 
 namespace App\Console;
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\App;
+=======
+>>>>>>> 5ea59c35788b9d5b4a0f0fb82902372b80fda386
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +17,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\CSVCommand::class
     ];
 
     /**
