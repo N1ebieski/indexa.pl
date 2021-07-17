@@ -34,7 +34,7 @@
         <div class="d-flex justify-content-center">
             <div class="footer-copyright text-center py-3 mr-3">
                 <small>
-                    2005 - {{ now()->year }} Copyright © <a href="https://alg.pl" target="_blank" rel="nofollow">ALG.PL</a> v 3.{{ config('idir.version') }}0107621 dla <a href="https://{{ config('app.name_short') }}">{{ config('app.name_short') }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-users text-danger"></i><span> @render('idir::statComponentOnline')</span>
+                    2005 - {{ now()->year }} Copyright © <a href="https://alg.pl" target="_blank" rel="nofollow">ALG.PL</a> v 3.{{ config('idir.version') }}0107621 dla <a href="https://{{ config('app.name_short') }}">{{ config('app.name_short') }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-users text-danger"></i><span> @render('idir::statComponent')</span>
                 </small>
                 <br />
               <small><a href="https://wioskisos.org/" target="_blank" rel="nofollow"><img src="https://cdn.alg.pl/katalog/pic/wioskisos.png" alt="" width="260" height="70" /></a> </small>

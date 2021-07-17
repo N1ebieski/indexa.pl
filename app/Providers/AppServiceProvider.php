@@ -22,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
                 'timeout' => 10.0
             ]);
         });
+
+        $this->app->bind(\N1ebieski\IDir\Models\Dir::class, function ($app) {
+            return $app->make(\App\Models\Dir::class);
+        });
     }
 
     /**

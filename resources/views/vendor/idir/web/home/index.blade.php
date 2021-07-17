@@ -17,7 +17,7 @@
 
 
                 <div class="col-xl-3 col-md-6 col-12 lewar text-center">
-                    @render('idir::dir.CarouselLiteComponent', [
+                    @render('idir::dir.CarouselComponent', [
                     'limit' => null,
                     'max_content' => 0,
                     'shuffle' => true
