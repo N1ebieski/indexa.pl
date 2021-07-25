@@ -11,6 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\DB;
+
+Route::get('/test/proba', function () {
+    dd(
+        DB::table('fields_values')
+            ->whereJsonContains('value', '1060003623')
+            ->first()
+    );
+});
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

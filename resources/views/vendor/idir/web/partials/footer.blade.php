@@ -81,8 +81,7 @@
         <div class="d-flex justify-content-center">
             <div class="footer-copyright text-center py-3 mr-3">
                 <small>
-                    2019-{{ now()->year }} Copyright © <a href="https://intelekt.net.pl/idir">iDir 
-                    v{{ config('idir.version') }}</a> by Mariusz Wysokiński
+                    2005 - {{ now()->year }} Copyright © <a href="https://alg.pl" target="_blank" rel="nofollow">ALG.PL</a> v 3.{{ config('idir.version') }}0107621 dla <a href="https://{{ config('app.name_short') }}">{{ config('app.name_short') }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-users text-danger"></i><span> @render('idir::statComponent')</span>
                 </small>
             </div>
             <div 

@@ -5,8 +5,8 @@ namespace App\Seeds\CSV\Jobs;
 use DateTime;
 use Exception;
 use Carbon\Carbon;
+use App\Models\Dir;
 use Illuminate\Bus\Queueable;
-use N1ebieski\IDir\Models\Dir;
 use N1ebieski\IDir\Models\User;
 use N1ebieski\IDir\Models\Group;
 use Illuminate\Support\Collection;
@@ -89,7 +89,7 @@ class DirsJob implements ShouldQueue
                 $dir->title = $item['title'];
                 $dir->content_html = $dir->content = static::description($item['description']);
                 $dir->url = static::url($item['url']);
-                $dir->status = Dir::ACTIVE;
+                $dir->status = Dir::INACTIVE;
                 $dir->created_at = $dir->updated_at = static::date();
 
                 $dir->group()->associate(Group::DEFAULT);
@@ -117,6 +117,12 @@ class DirsJob implements ShouldQueue
                 if (!empty($item['url'])) {
                     $dir->status()->create([
                         'attempted_at' => Carbon::now()->subDays(rand(1, 45))
+                    ]);
+                }
+
+                if (!empty($item['nip'])) {
+                    $dir->gus()->create([
+                        'attempted_at' => null
                     ]);
                 }
 
@@ -238,10 +244,18 @@ class DirsJob implements ShouldQueue
      */
     protected static function verify(array $item) : bool
     {
-        return Dir::where('title', $item['title'])
+        $dir = Dir::where('title', $item['title'])
             ->when(!empty($item['url']), function ($query) use ($item) {
                 $query->orWhere('url', mb_strtolower($item['url']));
             })
-            ->first() === null;
+            ->first();
+
+        if ($dir === null && !empty($item['nip'])) {
+            $nip = DB::table('fields_values')
+                ->whereJsonContains('value', $item['nip'])
+                ->first();
+        }
+
+        return $dir === null && $nip === null;
     }
 }

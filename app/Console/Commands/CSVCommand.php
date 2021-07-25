@@ -178,6 +178,8 @@ class CSVCommand extends Command
             $this->line("\n");
             $this->call('migrate', ['--path' => 'database/migrations/vendor/idir', '--force' => true], $this->getOutput());
             $this->line("\n");
+            $this->call('migrate', ['--path' => 'database/migrations/2021_07_17_144827_create_dirs_gus_table.php', '--force' => true], $this->getOutput());
+            $this->line("\n");
             $bar->advance();
             $this->line("\n");
             $this->line($this->lang->get('icore::install.seed'));
