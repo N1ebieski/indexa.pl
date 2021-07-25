@@ -52,9 +52,7 @@
             </div>
         </div>
         <div class="col-md-4 order-sm-2 order-md-1">
-		<div class="tagis rounded">
             @include('idir::web.dir.partials.sidebar')
-			</div>
         </div>
     </div>
 </div>

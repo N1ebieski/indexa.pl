@@ -1,4 +1,4 @@
-<footer class="page-footer border-top font-small pt-4 mt50">
+<footer class="page-footer font-small pt-4">
     <div class="container text-center text-md-left">
         <div class="row ">
             <div class="col-md mx-auto">
@@ -15,30 +15,98 @@
             @endif
             <hr class="clearfix w-100 d-md-none">
         </div>
-        <hr class="hr-{{ $dir->group->border ?? null }}">
-        <div class="col-md-auto text-center">
-            <!--linki -->
-			<a href="{{ route('web.dir.index') }}" class="{{ $isUrl(route('web.dir.index'), 'font-weight-bold') }}" title="{{ trans('idir::dirs.route.index') }} {{ config('app.name') }}">Katalog {{ config('app.name_short') }}</a> |
-			<a href="{{ route('web.friend.index') }}" title="{{ trans('icore::friends.route.index') }}" class="{{ $isUrl(route('web.friend.index'), 'font-weight-bold') }}">{{ trans('icore::friends.route.index') }}</a> |
-			<a href="/info/regulamin" rel="nofollow">Regulamin</a> |
-			<a href="https://alg.pl/polityka" target="_blank" rel="nofollow">Polityka Prywatności</a> |
-			<a href="https://alg.pl/mk" target="_blank" rel="nofollow">Multikody</a> |
-            <a href="{{ route('web.contact.show') }}" title="{{ trans('icore::contact.route.show') }}" class="{{ $isUrl(route('web.contact.show'), 'font-weight-bold') }}">
-                {{ trans('icore::contact.route.show') }}
-            </a> |
-            <hr class="hr-{{ $dir->group->border ?? null }}">
-            @render('idir::linkComponent', ['limit' => 5, 'cats' => $catsAsArray ?? null])
-            <!--linkiKoniec-->
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <h5 class="mt-3 mb-2">
+                    {{ trans('icore::pages.map') }}:
+                </h5>
+            </div>
+            <div class="col-3 d-none d-lg-block">
+                <h5 class="mt-3 mb-2">
+                    {{ trans('icore::stats.stats') }}:
+                </h5>
+            </div>
         </div>
-        <hr class="hr-{{ $dir->group->border ?? null }}">
+        <div class="row justify-content-end">
+            @render('icore::page.footerComponent', ['cols' => 2])
+            <div class="col-lg-3 col-sm-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a 
+                            href="{{ route('web.dir.index') }}"
+                            title="{{ trans('idir::dirs.route.index') }}"
+                            class="{{ $isUrl(route('web.dir.index'), 'font-weight-bold') }}"
+                        >
+                            {{ trans('idir::dirs.route.index') }}
+                        </a>
+                    </li>                    
+                    <li class="list-group-item">
+                        <a 
+                            href="{{ route('web.post.index') }}" 
+                            title="{{ trans('icore::posts.route.blog') }}"
+                            class="{{ $isUrl(route('web.post.index'), 'font-weight-bold') }}"
+                        >
+                            {{ trans('icore::posts.route.blog') }}
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a 
+                            href="{{ route('web.contact.show') }}" 
+                            title="{{ trans('icore::contact.route.show') }}" 
+                            class="{{ $isUrl(route('web.contact.show'), 'font-weight-bold') }}"
+                        >
+                            {{ trans('icore::contact.route.show') }}
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a 
+                            href="{{ route('web.friend.index') }}" 
+                            title="{{ trans('icore::friends.route.index') }}" 
+                            class="{{ $isUrl(route('web.friend.index'), 'font-weight-bold') }}"
+                        >
+                            {{ trans('icore::friends.route.index') }}
+                        </a>
+                    </li>                    
+                </ul>
+                @render('idir::linkComponent', ['limit' => 5, 'cats' => $catsAsArray ?? null])
+            </div> 
+            <div class="col-lg-3 col-sm-6">
+                <h5 class="mt-4 mt-sm-0 mb-2 d-lg-none">
+                    {{ trans('icore::stats.stats') }}:
+                </h5>
+                @render('idir::statComponent')
+            </div>
+        </div>        
+        <hr>
         <div class="d-flex justify-content-center">
             <div class="footer-copyright text-center py-3 mr-3">
                 <small>
                     2005 - {{ now()->year }} Copyright © <a href="https://alg.pl" target="_blank" rel="nofollow">ALG.PL</a> v 3.{{ config('idir.version') }}0107621 dla <a href="https://{{ config('app.name_short') }}">{{ config('app.name_short') }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fas fa-users text-danger"></i><span> @render('idir::statComponent')</span>
                 </small>
-                <br />
-              <small><a href="https://wioskisos.org/" target="_blank" rel="nofollow"><img src="https://cdn.alg.pl/katalog/pic/wioskisos.png" alt="" width="260" height="70" /></a> </small>
+            </div>
+            <div 
+                class="btn-group my-auto" 
+                id="themeToggle" 
+                role="group"
+                aria-label="{{ trans('icore::default.theme_toggle') }}"
+            >
+                <button 
+                    type="button" 
+                    class="btn btn-sm btn-light border" 
+                    style="width:80px;"
+                    {{ $isTheme(['', null], 'disabled') }}
+                >
+                    {{ trans('icore::default.light') }}
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-sm btn-dark border" 
+                    style="width:80px;"
+                    {{ $isTheme('dark', 'disabled') }}
+                >
+                    {{ trans('icore::default.dark') }}
+                </button>
             </div>
         </div>
+    </div>
 </footer>
-

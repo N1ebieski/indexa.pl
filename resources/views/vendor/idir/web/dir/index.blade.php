@@ -18,11 +18,10 @@
 @section('content')
 <div class="container">
     @render('idir::dir.carouselComponent', [
-        'max_content' => 450
+        'max_content' => 500
     ])
-
     <div class="row mt-3">
-        <div class="col-md-8 order-sm-1 order-md-2 mb-3">
+        <div class="col-md-8 order-sm-1 order-md-2">
             <div id="filterContent">
                 @include('idir::web.dir.partials.filter')
                 @if ($dirs->isNotEmpty())
@@ -40,10 +39,8 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-4 order-sm-2 order-md-1 mb-3">
-		        <div class="tagis rounded">
+        <div class="col-md-4 order-sm-2 order-md-1">
             @include('idir::web.dir.partials.sidebar')
-			</div>
         </div>
     </div>
 </div>

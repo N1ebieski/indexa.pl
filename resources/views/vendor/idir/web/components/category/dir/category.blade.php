@@ -15,7 +15,7 @@
             @endif
             <span>{{ $category->name }}</span>
         </a>
-        <span class="badge badge-primary badge-pills">{{ $category->nested_morphs_count }}</span>
+        <span class="badge badge-primary badge-pill">{{ $category->nested_morphs_count }}</span>
     </div>
     @endforeach
 </div>
