@@ -28,10 +28,15 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->call(App::make(\App\Crons\Stat\Dir\StatCron::class))
-             ->name('StatCron')
-             ->daily()
-             ->runInBackground();
+        $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
+            ->name('GusCron')
+            ->monthlyOn(1, '01:00')
+            ->runInBackground();
+
+        // $schedule->call(App::make(\App\Crons\Stat\Dir\StatCron::class))
+        //     ->name('StatCron')
+        //     ->daily()
+        //     ->runInBackground();
 
         $schedule->command('queue:work --daemon --stop-when-empty --tries=3')
             ->withoutOverlapping();

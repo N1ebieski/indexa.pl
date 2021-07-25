@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Crons;
+namespace App\Crons\Dir;
 
-use App\Models\DirGus;
 use Carbon\Carbon;
+use App\Models\DirGus;
 use App\Jobs\Dir\CheckGusJob;
 use Illuminate\Contracts\Config\Repository as Config;
 
