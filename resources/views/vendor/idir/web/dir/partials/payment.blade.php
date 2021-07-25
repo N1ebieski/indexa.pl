@@ -64,8 +64,8 @@
                                 'currency' => config("services.{$driverByType('transfer')}.transfer.currency"),
                                 'days' => $days = $price->days,
                                 'limit' => $days !== null ? 
-                                    mb_strtolower(trans('idir::groups.days')) 
-                                    : mb_strtolower(trans('idir::groups.unlimited'))
+                                    mb_strtolower(trans('idir::prices.days')) 
+                                    : mb_strtolower(trans('idir::prices.unlimited'))
                             ]) }}
                         </option>
                         @endforeach
@@ -109,8 +109,8 @@
                                 'currency' => config("services.{$driverByType('code_transfer')}.code_transfer.currency"),
                                 'days' => $days = $price->days,
                                 'limit' => $days !== null ? 
-                                    mb_strtolower(trans('idir::groups.days')) 
-                                    : mb_strtolower(trans('idir::groups.unlimited'))
+                                    mb_strtolower(trans('idir::prices.days')) 
+                                    : mb_strtolower(trans('idir::prices.unlimited'))
                             ]) }}
                         </option>
                         @endforeach
@@ -169,8 +169,8 @@
                                 'currency' => config("services.{$driverByType('code_sms')}.code_sms.currency"),                            
                                 'days' => $days = $price->days,
                                 'limit' => $days !== null ? 
-                                    mb_strtolower(trans('idir::groups.days')) 
-                                    : mb_strtolower(trans('idir::groups.unlimited'))
+                                    mb_strtolower(trans('idir::prices.days')) 
+                                    : mb_strtolower(trans('idir::prices.unlimited'))
                             ]) }}
                         </option>
                         @endforeach
@@ -204,7 +204,6 @@
                 </p>
             </div>
             @endif
-<!------paypal---11042021-12:53:33-------->
             @if ($pricesByType('paypal_express')->isNotEmpty())
             <div 
                 class="tab-pane fade {{ old('payment_type', $paymentType) === "paypal_express" ? 'show active' : null }}"
@@ -250,8 +249,6 @@
                 </p>
             </div>
             @endif
-
-
         </div>
     </div>
 </div>

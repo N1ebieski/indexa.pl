@@ -1,18 +1,21 @@
 @extends(config('idir.layout') . '::web.layouts.layout', [
-'title' => [
-trans('icore::categories.route.show', ['category' => $category->name]),
-$region->name,
-$dirs->currentPage() > 1 ?
-trans('icore::pagination.page', ['num' => $dirs->currentPage()])
-: null
-],
-'desc' => [trans('icore::categories.route.show', ['category' => $category->name]), $region->name],
-'keys' => [trans('icore::categories.route.show', ['category' => $category->name]), $region->name]
+    'title' => [
+        trans('icore::categories.route.show', ['category' => $category->name]), 
+        $region->name,
+        $dirs->currentPage() > 1 ?
+            trans('icore::pagination.page', ['num' => $dirs->currentPage()])
+            : null
+    ],
+    'desc' => [trans('icore::categories.route.show', ['category' => $category->name]), $region->name],
+    'keys' => [trans('icore::categories.route.show', ['category' => $category->name]), $region->name]
 ])
 
 @section('breadcrumb')
 <li class="breadcrumb-item">
-    <a href="{{ route('web.dir.index') }}" title="{{ trans('idir::dirs.route.index') }}">
+    <a 
+        href="{{ route('web.dir.index') }}" 
+        title="{{ trans('idir::dirs.route.index') }}"
+    >
         {{ trans('idir::dirs.route.index') }}
     </a>
 </li>
@@ -23,7 +26,10 @@ trans('icore::pagination.page', ['num' => $dirs->currentPage()])
 @if ($category->ancestors->count() > 0)
 @foreach ($category->ancestors as $ancestor)
 <li class="breadcrumb-item">
-    <a href="{{ route('web.category.dir.show', [$ancestor->slug, $region->slug]) }}" title="{{ $ancestor->name }}">
+    <a 
+        href="{{ route('web.category.dir.show', [$ancestor->slug, $region->slug]) }}"
+        title="{{ $ancestor->name }}"
+    >
         {{ $ancestor->name }}
     </a>
 </li>
@@ -51,20 +57,20 @@ trans('icore::pagination.page', ['num' => $dirs->currentPage()])
         <div class="col-md-8 order-sm-1 order-md-2">
             <h1 class="h4 border-bottom pb-2">
                 @if (!empty($category->icon))
-                <i class="{{ $category->icon }} text-center icon-show-{{ config('app.name_short') }}"></i>
+                    <i class="{{ $category->icon }}"></i>
                 @endif
-                <span class="text-success-{{ config('app.name_short') }}">{{ trans('icore::categories.route.show', ['category' => $category->name]) }}</span>
+                <span>{{ trans('icore::categories.route.show', ['category' => $category->name]) }}</span>
             </h1>
             <div id="filterContent">
-                @include('idir::web.dir.partials.filter')
+                @include('idir::web.dir.partials.filter')            
                 @if ($dirs->isNotEmpty())
                 <div id="infinite-scroll">
                     @foreach ($dirs as $dir)
-                    @include('idir::web.dir.partials.dir', [$dir])
+                        @include('idir::web.dir.partials.dir', [$dir])
                     @endforeach
                     @include('icore::web.partials.pagination', [
-                    'items' => $dirs,
-                    'next' => true
+                        'items' => $dirs, 
+                        'next' => true
                     ])
                 </div>
                 @else
@@ -76,5 +82,8 @@ trans('icore::pagination.page', ['num' => $dirs->currentPage()])
             @include('idir::web.category.dir.partials.sidebar')
         </div>
     </div>
+    @render('idir::category.dir.gridComponent', [
+        'parent' => $category->id
+    ])
 </div>
 @endsection

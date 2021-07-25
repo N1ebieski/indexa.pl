@@ -1,10 +1,10 @@
 @if ($dirs->isNotEmpty())
-<div id="carousel" class="carousel slide pb-3 ramka-carousel rounded shadow" data-ride="carousel">
+<div id="carousel" class="carousel slide pb-3 mt-3" data-ride="carousel">
     <div class="carousel-inner">
         @foreach ($dirs as $dir)
         <div class="carousel-item {{ $loop->first ? 'active' : null }}">
             <div class="row">
-                <div class="col-md-9 order-2">
+                <div class="col-md-{{ $dir->isUrl() ? '8' : '12' }} order-2">
                     <h2 class="h5 border-bottom pb-2 my-2">
                         <a 
                             href="{{ route('web.dir.show', [$dir->slug]) }}" 
@@ -15,7 +15,7 @@
                     </h2>
                     <div class="d-flex mb-2">
                         <small class="mr-auto">
-                            <i class="far fa-clock mr-1 text-secondary"></i> Dodano {{ $dir->created_at_diff }}
+                            {{ trans('icore::default.created_at_diff') }}: {{ $dir->created_at_diff }}
                         </small>
                         <small class="ml-auto">
                             <input 
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 @if ($dir->isUrl())
-                <div class="col-md-3 minic order-1">
+                <div class="col-md-4 order-1">
                     <img 
                         src="{{ $dir->thumbnail_url }}" 
                         class="img-fluid border mx-auto d-block"

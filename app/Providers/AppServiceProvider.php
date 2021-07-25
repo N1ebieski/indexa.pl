@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
                     'User-Agent' => 'Grupa ALG.PL  v' . $this->app['config']->get('idir.version')
                     . ' ' . parse_url($this->app['config']->get('app.url'), PHP_URL_HOST)
                 ],
-                'timeout' => 10.0
+                'timeout' => 20.0
             ]);
         });
     }
