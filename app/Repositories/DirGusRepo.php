@@ -61,11 +61,11 @@ class DirGusRepo
         return $this->dirGus
             ->join('dirs', function ($query) {
                 $query->on('dirs_gus.dir_id', '=', 'dirs.id')
-                    ->whereIn('dirs.status', [Dir::ACTIVE, Dir::STATUS_INACTIVE]);
+                    ->whereIn('dirs.status', [Dir::ACTIVE, Dir::INACTIVE]);
             })
             ->join('fields_values', function ($query) {
                 $query->on('dirs_gus.dir_id', '=', 'fields_values.model_id')
-                    ->where('fields_values.model_type', Dir::make()->getMorphClass())
+                    ->where('fields_values.model_type', $this->dirGus->dir()->make()->getMorphClass())
                     ->where('fields_values.field_id', $this->config->get('idir.field.gus.nip'));
             })
             ->where(function ($query) use ($timestamp) {
@@ -88,7 +88,17 @@ class DirGusRepo
                 })
                 ->orWhere('attempted_at', null);
             })
-            ->orderBy('attempted_at', 'asc')
+            ->orderBy('dirs_gus.attempted_at', 'asc')
+            ->orderBy('dirs.id', 'asc')
             ->chunk($chunk, $closure);
+    }
+
+    /**
+     * [attemptNow description]
+     * @return bool [description]
+     */
+    public function attemptedNow() : bool
+    {
+        return $this->dirGus->update(['attempted_at' => $this->carbon->now()]);
     }
 }

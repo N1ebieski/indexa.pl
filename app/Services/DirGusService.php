@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\DirGus;
+use App\Services\Factories\NipFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager as DB;
 use N1ebieski\ICore\Services\Interfaces\Creatable;
@@ -15,6 +16,13 @@ class DirGusService implements Creatable
      * @var DirGus
      */
     protected $dirGus;
+
+    /**
+     * Undocumented variable
+     *
+     * @var NipFactory
+     */
+    protected $nipFactory;
 
     /**
      * Undocumented variable
@@ -34,12 +42,19 @@ class DirGusService implements Creatable
      * Undocumented function
      *
      * @param DirGus $dirGus
+     * @param NipFactory $nipFactory
      * @param DB $db
      * @param Config $config
      */
-    public function __construct(DirGus $dirGus, DB $db, Config $config)
-    {
+    public function __construct(
+        DirGus $dirGus,
+        NipFactory $nipFactory,
+        DB $db,
+        Config $config
+    ) {
         $this->dirGus = $dirGus;
+
+        $this->nipFactory = $nipFactory;
 
         $this->db = $db;
         $this->config = $config;
@@ -114,11 +129,16 @@ class DirGusService implements Creatable
      */
     protected function isSync(array $attributes) : bool
     {
-        $field = $this->dirGus->dir->fields->firstWhere(
-            'id',
-            $this->config->get('idir.field.gus.nip')
-        );
+        return $this->makeNip() !== $attributes['nip'];
+    }
 
-        return optional($field)->decode_value !== $attributes['nip'];
+    /**
+     * Undocumented function
+     *
+     * @return string|null
+     */
+    protected function makeNip() : ?string
+    {
+        return $this->nipFactory->setDir($this->dirGus->dir)->makeNip()->decode_value ?? null;
     }
 }

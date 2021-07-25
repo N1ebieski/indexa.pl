@@ -3,17 +3,22 @@
 namespace App\Services;
 
 use App\Models\Dir;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Contracts\Auth\Guard as Auth;
-use Illuminate\Database\DatabaseManager as DB;
-use Illuminate\Contracts\Container\Container as App;
+use N1ebieski\ICore\Utils\Traits\Decorator;
 use Illuminate\Contracts\Config\Repository as Config;
 use N1ebieski\IDir\Services\DirService as BaseDirService;
 
-class DirService extends BaseDirService
+class DirService
 {
+    use Decorator;
+
+    /**
+     * Undocumented variable
+     *
+     * @var Dir
+     */
+    protected $dir;
+
     /**
      * Undocumented variable
      *
@@ -24,32 +29,32 @@ class DirService extends BaseDirService
     /**
      * Undocumented function
      *
+     * @param BaseDirService $decorated
      * @param Dir $dir
-     * @param Session $session
-     * @param Carbon $carbon
-     * @param Auth $auth
-     * @param DB $db
-     * @param App $app
+     * @param Config $config
      */
-    public function __construct(
-        Dir $dir,
-        Session $session,
-        Carbon $carbon,
-        Auth $auth,
-        DB $db,
-        App $app,
-        Config $config
-    ) {
-        $this->config = $config;
+    public function __construct(BaseDirService $decorated, Dir $dir, Config $config)
+    {
+        $this->decorated = $decorated;
 
-        parent::__construct(
-            $dir,
-            $session,
-            $carbon,
-            $auth,
-            $db,
-            $app
-        );
+        $this->setDir($dir);
+
+        $this->config = $config;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Dir $dir
+     * @return self
+     */
+    public function setDir(Dir $dir)
+    {
+        $this->decorated->setDir($dir);
+
+        $this->dir = $dir;
+
+        return $this;
     }
 
     /**
@@ -60,7 +65,7 @@ class DirService extends BaseDirService
      */
     public function create(array $attributes) : Model
     {
-        $dir = parent::create($attributes);
+        $dir = $this->decorated->create($attributes);
 
         $nip = $this->config->get('idir.field.gus.nip');
 
@@ -88,7 +93,7 @@ class DirService extends BaseDirService
             ->makeService()
             ->sync(['nip' => $attributes['field'][$nip] ?? null]);
 
-        return parent::update($attributes);
+        return $this->decorated->update($attributes);
     }
 
     /**
@@ -105,6 +110,6 @@ class DirService extends BaseDirService
             ->makeService()
             ->sync(['nip' => $attributes['field'][$nip] ?? null]);
 
-        return parent::updateFull($attributes);
+        return $this->decorated->updateFull($attributes);
     }
 }

@@ -233,7 +233,7 @@ class DirsJob implements ShouldQueue
      */
     protected static function date() : DateTime
     {
-        return Carbon::now()->subDays(rand(0, 3650));
+        return Carbon::now()->subDays(rand(0, 365*2));
     }
 
     /**
@@ -250,9 +250,13 @@ class DirsJob implements ShouldQueue
             })
             ->first();
 
+        $nip = null;
+
         if ($dir === null && !empty($item['nip'])) {
             $nip = DB::table('fields_values')
                 ->whereJsonContains('value', $item['nip'])
+                ->where('field_id', '=', Config::get('idir.field.gus.nip'))
+                ->where('model_type', '=', Dir::make()->getMorphClass())
                 ->first();
         }
 

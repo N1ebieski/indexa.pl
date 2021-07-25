@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\DirGusService;
+use App\Repositories\DirGusRepo;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 
