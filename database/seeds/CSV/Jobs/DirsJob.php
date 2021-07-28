@@ -6,6 +6,7 @@ use DateTime;
 use Exception;
 use Carbon\Carbon;
 use App\Models\Dir;
+use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
 use N1ebieski\IDir\Models\User;
 use N1ebieski\IDir\Models\Group;
@@ -133,10 +134,10 @@ class DirsJob implements ShouldQueue
                         switch ($name) {
                             case 'regions':
                                 $value = $defaultRegions->whereIn(
-                                    'name',
+                                    'slug',
                                     collect(explode(',', $item[$name]))
                                         ->map(function ($item) {
-                                            return ucfirst($item);
+                                            return Str::slug($item);
                                         })
                                         ->toArray()
                                 )

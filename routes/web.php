@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 
 // Route::get('/test/proba', function (GusApi $gusApi) {
 //     $gusApi->login();
-//     $gusReport = $gusApi->getByNip('6782905183');
+//     $gusReport = $gusApi->getByNip('8321004359');
 //     $fullReport = $gusApi->getFullReport($gusReport[0], ReportTypes::REPORT_ORGANIZATION);
 
 //     dump($gusReport[0]);
@@ -40,7 +40,6 @@ use Illuminate\Support\Facades\DB;
 // Route::get('/test/proba3', function (CheckGusJob $checkGusJob) {
 //     $checkGusJob->dispatch(DirGus::find(4));
 // });
-
 
 // Route::get('/', function () {
 //     return view('welcome');
