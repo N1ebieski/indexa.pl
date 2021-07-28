@@ -85,21 +85,21 @@ return [
             'name' => null,
             'street' => 5,
             'propertyNumber' => [
-                'id' => 5,
-                'separator' => ' '
+                'separator' => ' ',
+                'id' => 5
             ],
             'apartmentNumber' => [
-                'id' => 5,
-                'separator' => '/'
+                'separator' => '/',
+                'id' => 5
             ],
             'zipCode' => 6,
             'city' => 4,
             'regions' => 1,
-            'district' => null,
-            'community' => null,
+            'district' => 10,
+            'community' => 11,
             'nip' => 9,
             'regon' => 8,
-            'map' => null,
+            'map' => 12,
             'phone' => 7
         ]
     ],
