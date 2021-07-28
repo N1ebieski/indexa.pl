@@ -84,8 +84,14 @@ return [
         'gus' => [
             'name' => null,
             'street' => 5,
-            'propertyNumber' => null,
-            'apartmentNumber' => null,
+            'propertyNumber' => [
+                'id' => 5,
+                'separator' => ' '
+            ],
+            'apartmentNumber' => [
+                'id' => 5,
+                'separator' => '/'
+            ],
             'zipCode' => 6,
             'city' => 4,
             'regions' => 1,

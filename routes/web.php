@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 
 // Route::get('/test/proba', function (GusApi $gusApi) {
 //     $gusApi->login();
-//     $gusReport = $gusApi->getByNip('8321004359');
+//     $gusReport = $gusApi->getByNip('5832908528');
 //     $fullReport = $gusApi->getFullReport($gusReport[0], ReportTypes::REPORT_ORGANIZATION);
 
 //     dump($gusReport[0]);
