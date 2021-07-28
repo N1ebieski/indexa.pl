@@ -83,17 +83,23 @@ return [
     'field' => [
         'gus' => [
             'name' => null,
-            'street' => 5,
-            'propertyNumber' => null,
-            'apartmentNumber' => null,
+        'street' => 5,
+        'propertyNumber' => [
+            'separator' => ' ',
+            'id' => 5
+        ],
+        'apartmentNumber' => [
+            'separator' => '/',
+            'id' => 5
+        ],
             'zipCode' => 6,
             'city' => 4,
             'regions' => 1,
-            'district' => null,
-            'community' => null,
+            'district' => 10,
+            'community' => 11,
             'nip' => 9,
             'regon' => 8,
-            'map' => null,
+            'map' => 12,
             'phone' => 7
         ]
     ],
