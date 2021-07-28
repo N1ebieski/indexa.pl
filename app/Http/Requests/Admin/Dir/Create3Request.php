@@ -25,7 +25,7 @@ class Create3Request extends BaseCreate3Request
                         'where' => [
                             'field_id' => Config::get('idir.field.gus.nip'),
                             'model_type' => Dir::make()->getMorphClass()
-                        ]                        
+                        ]
                     ])
                 ]
             ]);
