@@ -38,6 +38,14 @@
                 enctype="multipart/form-data" 
                 id="createForm"
             >
+
+                @if ($group->fields->isNotEmpty())
+                    @foreach ($group->fields as $field)
+                        @include("idir::web.field.partials.{$field->type}", [
+                            'value' => session("dir.field.{$field->id}")
+                        ])
+                    @endforeach
+
                 @csrf
                 <div class="form-group">
                     <label for="title" class="d-flex justify-content-between">
@@ -179,12 +187,7 @@
                     </div>
                     @includeWhen($errors->has('categories'), 'icore::web.partials.errors', ['name' => 'categories'])
                 </div>
-                @if ($group->fields->isNotEmpty())
-                    @foreach ($group->fields as $field)
-                        @include("idir::web.field.partials.{$field->type}", [
-                            'value' => session("dir.field.{$field->id}")
-                        ])
-                    @endforeach
+
                 @endif
                 <hr>
                 <div class="d-flex mb-3">

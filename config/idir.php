@@ -82,8 +82,8 @@ return [
 
     'field' => [
         'gus' => [
-            'name' => null,
-        'street' => 5,
+            'name' => 13,
+            'street' => 5,
         'propertyNumber' => [
             'separator' => ' ',
             'id' => 5
