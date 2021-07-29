@@ -139,7 +139,7 @@ class CheckGusJob implements ShouldQueue
             $this->gusReport = $this->gusApi->getByNip($this->makeNip())[0];
 
             $this->updateFields();
-            $this->updateTitle();
+            // $this->updateTitle();
             $this->updateCreatedAt();
         }
     }
