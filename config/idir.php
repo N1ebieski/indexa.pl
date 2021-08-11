@@ -99,7 +99,7 @@ return [
             'community' => 11,
             'nip' => 9,
             'regon' => 8,
-            'map' => 12,
+            'map' => 2,
             'phone' => 7
         ]
     ],

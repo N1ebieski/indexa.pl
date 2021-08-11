@@ -22,7 +22,7 @@
 
 <ul>
     <li>IP: {{ request()->server('SERVER_ADDR') }}</li>
-    <li>User-Agent: iDir v{{ config('idir.version') }} {{ parse_url(config('app.url'), PHP_URL_HOST) }}</li>
+    <li>User-Agent: Grupa ALG.PL v 3.{{ config('idir.version') }} {{ parse_url(config('app.url'), PHP_URL_HOST) }}</li>
 </ul>
 
 @endcomponent

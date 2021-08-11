@@ -20,7 +20,7 @@
     {{ trans('idir::dirs.route.create.index') }}
 </li>
 <li class="breadcrumb-item active" aria-current="page">
-    {{ trans('idir::dirs.route.step', ['step' => 2]) }} {{ trans('idir::dirs.route.create.2') }}
+    {{ trans('idir::dirs.route.create.2') }} 
 </li>
 @endsection
 
@@ -28,24 +28,20 @@
 <div class="container">
     @include('icore::web.partials.alerts')
     <h3 class="h5 border-bottom pb-2">
-        {{ trans('idir::dirs.route.create.2') }}
+{{ trans('idir::dirs.route.create.2') }}
     </h3>
+
+<div class="progress mb-4">
+  <div class="progress-bar" role="progress-bar progress-bar-striped progress-bar-animated" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+</div>
     <div class="row mb-4">
-        <div class="col-md-8">
+        <div class="col-md-8 ramka">
             <form 
                 method="post" 
                 action="{{ route('web.dir.store_2', [$group->id]) }}"
                 enctype="multipart/form-data" 
                 id="createForm"
             >
-
-                @if ($group->fields->isNotEmpty())
-                    @foreach ($group->fields as $field)
-                        @include("idir::web.field.partials.{$field->type}", [
-                            'value' => session("dir.field.{$field->id}")
-                        ])
-                    @endforeach
-
                 @csrf
                 <div class="form-group">
                     <label for="title" class="d-flex justify-content-between">
@@ -109,7 +105,7 @@
                         <i 
                             data-toggle="tooltip" 
                             data-placement="top"
-                            title="{{ trans('idir::dirs.tags.tooltip', ['max_tags' => config('idir.dir.max_tags'), 'max_chars' => config('icore.tag.max_chars')]) }}"
+                            title="{{ trans('idir::dirs.tags.tooltip', ['max_tags' => $max_tags = config('idir.dir.max_tags')]) }}"
                             class="far fa-question-circle"
                         ></i>
                     </label>
@@ -119,8 +115,7 @@
                         class="form-control tagsinput {{ $isValid('tags') }}"
                         value="{{ old('tags', session('dir.tags') !== null ? implode(',', session('dir.tags')) : null) }}"
                         placeholder="{{ trans('idir::dirs.tags.placeholder') }}" 
-                        data-max="{{ config('idir.dir.max_tags') }}"
-                        data-max-chars="{{ config('icore.tag.max_chars') }}"
+                        data-max="{{ $max_tags }}"
                     >
                     @includeWhen($errors->has('tags'), 'icore::web.partials.errors', ['name' => 'tags'])
                 </div>
@@ -187,7 +182,12 @@
                     </div>
                     @includeWhen($errors->has('categories'), 'icore::web.partials.errors', ['name' => 'categories'])
                 </div>
-
+                @if ($group->fields->isNotEmpty())
+                    @foreach ($group->fields as $field)
+                        @include("idir::web.field.partials.{$field->type}", [
+                            'value' => session("dir.field.{$field->id}")
+                        ])
+                    @endforeach
                 @endif
                 <hr>
                 <div class="d-flex mb-3">
@@ -213,7 +213,7 @@
             </form>
         </div>
         <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card">
                 @include('idir::web.dir.partials.group')
             </div>
         </div>
@@ -223,6 +223,6 @@
 
 @push('script')
 @component('icore::web.partials.jsvalidation')
-{!! str_replace('"content"', '"content_html"', JsValidator::formRequest(\App\Http\Requests\Web\Dir\Store2Request::class, '#createForm')); !!}
+{!! str_replace('"content"', '"content_html"', JsValidator::formRequest(\N1ebieski\IDir\Http\Requests\Web\Dir\Store2Request::class, '#createForm')); !!}
 @endcomponent
 @endpush

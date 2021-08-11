@@ -1,3 +1,4 @@
+<!--\web\dir\search.blade.php-->
 @extends(config('idir.layout') . '::web.layouts.layout', [
     'title' => [
         trans('idir::dirs.route.search', ['search' => $search]),

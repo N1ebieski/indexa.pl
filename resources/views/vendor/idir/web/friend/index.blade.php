@@ -1,7 +1,7 @@
 @extends(config('idir.layout') . '::web.layouts.layout', [
-    'title' => [trans('icore::friends.route.index')],
-    'desc' => [trans('icore::friends.route.index')],
-    'keys' => [trans('icore::friends.route.index')]
+'title' => [trans('icore::friends.route.index')],
+'desc' => [trans('icore::friends.route.index')],
+'keys' => [trans('icore::friends.route.index')]
 ])
 
 @section('breadcrumb')
@@ -10,45 +10,24 @@
 
 @section('content')
 <div class="container">
-    <h1 class="h4 border-bottom pb-2">
-        {{ trans('icore::friends.friends') }}
-    </h1>
-    <ul>
-        <li>
-            <a 
-                href="https://intelekt.net.pl/icore" 
-                target="_blank" 
-                title="iCore - mini platforma blogowa" 
-                rel="noopener"
-            >
-                iCore - mini platforma blogowa
-            </a>
-        </li>
-        <li>
-            <a 
-                href="https://intelekt.net.pl/idir" 
-                target="_blank"
-                title="iDir - nowoczesny katalog stron lub firm" 
-                rel="noopener"
-            >
-                iDir - nowoczesny katalog stron lub firm
-            </a>
-        </li>
-        <li>
-            <a 
-                href="https://www.iconpacks.net" 
-                target="_blank"
-                title="Iconpacks - completely free icons" 
-                rel="noopener"
-            >
-                Iconpacks - completely free icons
-            </a>
-        </li>
-        @foreach ($dirs as $dir)
-        <li>
-            {!! $dir->link !!}
-        </li>
-        @endforeach
-    </ul>
+        <h1 class="h4 border-bottom pb-2">
+            <i class="fa fa-anchor"></i>&nbsp;&nbsp;{{ trans('icore::friends.friends') }}
+        </h1>
+    <div class="ramka2">
+
+        <ul class="list-unstyled text-muted">
+
+            @foreach ($dirs as $dir)
+            <li class="mb-2"><span class="text-sm"><i class="fas fa-external-link-alt text-secondary w-1rem mr-3 text-center"></i>
+                    {!! $dir->link !!}
+                </span></li>
+            @endforeach
+
+            <li class="mb-2"><span class="text-sm"><i class="fas fa-external-link-alt text-secondary w-1rem mr-3 text-center"></i>
+                    <a href="https://hanza.pl" target="_blank" title="Nieruchomości nad morzem">Nieruchomości nad morzem</a>
+                </span></li>
+
+        </ul>
+    </div>
 </div>
 @endsection

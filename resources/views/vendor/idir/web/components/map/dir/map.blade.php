@@ -8,8 +8,7 @@
 ></div>
 
 @pushonce('script.map')
-<script 
-    defer 
+<script defer 
     src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemap.api_key') }}&callback=initMap" 
     type="text/javascript"
 ></script>

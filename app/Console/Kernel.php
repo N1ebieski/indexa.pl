@@ -28,10 +28,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        // $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
-        //     ->name('GusCron')
-        //     ->monthlyOn(1, '01:00')
-        //     ->runInBackground();
+         $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
+             ->name('GusCron')
+             ->monthlyOn(11, '08:00')
+             ->runInBackground();
 
         // $schedule->call(App::make(\App\Crons\Stat\Dir\StatCron::class))
         //     ->name('StatCron')
