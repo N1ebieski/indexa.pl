@@ -14,13 +14,17 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Collection as Collect;
 use App\Jobs\Dir\Interfaces\GusReportInterface;
 use Illuminate\Contracts\Config\Repository as Config;
 use N1ebieski\IDir\Http\Responses\Data\Field\Value\ValueFactory;
 
 class CheckGusJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Delete the job if its models no longer exist.
@@ -72,6 +76,13 @@ class CheckGusJob implements ShouldQueue
     /**
      * Undocumented variable
      *
+     * @var Collect
+     */
+    protected $collect;
+
+    /**
+     * Undocumented variable
+     *
      * @var ValueFactory
      */
     protected $valueFactory;
@@ -98,7 +109,7 @@ class CheckGusJob implements ShouldQueue
      * [isAttempt description]
      * @return bool [description]
      */
-    protected function isAttempt() : bool
+    protected function isAttempt(): bool
     {
         return is_string($this->makeNip()) && (
             $this->dirGus->attempted_at === null ||
@@ -123,11 +134,13 @@ class CheckGusJob implements ShouldQueue
         NipFactory $nipFactory,
         ValueFactory $valueFactory,
         Carbon $carbon,
-        Config $config
-    ) : void {
+        Config $config,
+        Collect $collect
+    ): void {
         $this->gusApi = $gusApi;
         $this->carbon = $carbon;
         $this->config = $config;
+        $this->collect = $collect;
 
         $this->nipFactory = $nipFactory;
         $this->valueFactory = $valueFactory;
@@ -160,11 +173,11 @@ class CheckGusJob implements ShouldQueue
      *
      * @return void
      */
-    protected function updateFields() : void
+    protected function updateFields(): void
     {
         $data = [];
 
-        foreach ($this->config->get('idir.field.gus') as $key => $value) {
+        foreach ($this->prepareFields() as $key => $value) {
             $id = $this->id($value);
 
             if ($id === null) {
@@ -199,9 +212,21 @@ class CheckGusJob implements ShouldQueue
     /**
      * Undocumented function
      *
+     * @return array
+     */
+    protected function prepareFields(): array
+    {
+        return $this->collect->make($this->config->get('idir.field.gus'))
+            ->except('map')
+            ->toArray();
+    }
+
+    /**
+     * Undocumented function
+     *
      * @return void
      */
-    protected function updateTitle() : void
+    protected function updateTitle(): void
     {
         if (!empty($title = $this->makeValue('name'))) {
             $this->dirGus->dir->title = $title;
@@ -214,7 +239,7 @@ class CheckGusJob implements ShouldQueue
      *
      * @return void
      */
-    protected function updateCreatedAt() : void
+    protected function updateCreatedAt(): void
     {
         if ($this->makeValue('type') === GusReportInterface::ORGANIZATION) {
             $fullReport = $this->gusApi->getFullReport($this->gusReport, ReportTypes::REPORT_ORGANIZATION)[0];
@@ -233,7 +258,7 @@ class CheckGusJob implements ShouldQueue
      * @param mixed $value
      * @return integer|null
      */
-    protected function id($value) : ?int
+    protected function id($value): ?int
     {
         if (is_int($value)) {
             return $value;
@@ -248,7 +273,7 @@ class CheckGusJob implements ShouldQueue
      * @param mixed $value
      * @return string|null
      */
-    protected function separator($value) : ?string
+    protected function separator($value): ?string
     {
         return $value['separator'] ?? null;
     }
@@ -258,7 +283,7 @@ class CheckGusJob implements ShouldQueue
      *
      * @return string|null
      */
-    protected function makeNip() : ?string
+    protected function makeNip(): ?string
     {
         return $this->nipFactory->setDir($this->dirGus->dir)->makeNip()->decode_value ?? null;
     }
@@ -269,7 +294,7 @@ class CheckGusJob implements ShouldQueue
      * @param string $type
      * @return string|null
      */
-    protected function makeValue(string $type) : ?string
+    protected function makeValue(string $type): ?string
     {
         return $this->valueFactory->makeValue($type, $this->gusReport)();
     }

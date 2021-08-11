@@ -17,6 +17,7 @@ use App\Models\DirGus;
 use App\Services\Factories\NipFactory;
 use GusApi\GusApi;
 use GusApi\ReportTypes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +39,9 @@ use Illuminate\Support\Facades\DB;
 // });
 
 // Route::get('/test/proba3', function (CheckGusJob $checkGusJob) {
-//     $checkGusJob->dispatch(DirGus::find(4));
+//     dd(Collection::make(Config::get('idir.field.gus'))
+//             ->except('map')
+//             ->toArray());
 // });
 
 // Route::get('/', function () {
