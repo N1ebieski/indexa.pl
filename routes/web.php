@@ -11,7 +11,10 @@
 |
 */
 
+use App\Crons\Dir\GusCron;
+use Illuminate\Support\Facades\App;
 use App\Jobs\Dir\CheckGusJob;
+use Carbon\Carbon;
 use App\Models\Dir;
 use App\Models\DirGus;
 use App\Services\Factories\NipFactory;
@@ -38,10 +41,10 @@ use Illuminate\Support\Facades\DB;
 //     ->first());
 // });
 
-// Route::get('/test/proba3', function (CheckGusJob $checkGusJob) {
-//     dd(Collection::make(Config::get('idir.field.gus'))
-//             ->except('map')
-//             ->toArray());
+// Route::get('/test/proba3', function () {
+//     $gusCron = App::make(GusCron::class);
+
+//     $gusCron();
 // });
 
 // Route::get('/', function () {
