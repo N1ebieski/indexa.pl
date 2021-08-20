@@ -72,7 +72,7 @@ class GusCron
      * @param Carbon $delay
      * @return self
      */
-    protected function setDelay(Carbon $delay) : self
+    protected function setDelay(Carbon $delay): self
     {
         $this->delay = $delay;
 
@@ -82,7 +82,7 @@ class GusCron
     /**
      * [__invoke description]
      */
-    public function __invoke() : void
+    public function __invoke(): void
     {
         if (!$this->isGusCheckerTurnOn()) {
             return;
@@ -108,7 +108,7 @@ class GusCron
      *
      * @param DirGus   $dirGus   [description]
      */
-    protected function addToQueue(DirGus $dirGus) : void
+    protected function addToQueue(DirGus $dirGus): void
     {
         $this->checkGusJob->dispatch($dirGus)->delay($this->delay);
     }
@@ -118,7 +118,7 @@ class GusCron
      *
      * @return boolean
      */
-    protected function isGusCheckerTurnOn() : bool
+    protected function isGusCheckerTurnOn(): bool
     {
         return $this->config->get('indexa.gus.check_days') > 0;
     }
@@ -128,7 +128,7 @@ class GusCron
      *
      * @return string
      */
-    protected function checkTimestamp() : string
+    protected function checkTimestamp(): string
     {
         return $this->carbon->now()->subDays($this->config->get('indexa.gus.check_days'));
     }

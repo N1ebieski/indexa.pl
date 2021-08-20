@@ -28,10 +28,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-         $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
-             ->name('GusCron')
-             ->monthlyOn(20, '15:47')
-             ->runInBackground();
+        $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
+            ->name('GusCron')
+            ->monthlyOn(20, '16:55')
+            ->runInBackground();
 
         // $schedule->call(App::make(\App\Crons\Stat\Dir\StatCron::class))
         //     ->name('StatCron')
@@ -49,7 +49,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

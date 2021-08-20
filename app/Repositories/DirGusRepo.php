@@ -57,8 +57,8 @@ class DirGusRepo
         int $chunk,
         Closure $closure,
         string $timestamp
-    ) : bool {
-        return $this->dirGus
+    ): bool {
+        return $this->dirGus->selectRaw('dirs_gus.*')
             ->join('dirs', function ($query) {
                 $query->on('dirs_gus.dir_id', '=', 'dirs.id')
                     ->whereIn('dirs.status', [Dir::ACTIVE, Dir::INACTIVE]);
@@ -70,23 +70,23 @@ class DirGusRepo
             })
             ->where(function ($query) use ($timestamp) {
                 $query->whereDate(
-                    'attempted_at',
+                    'dirs_gus.attempted_at',
                     '<',
                     $this->carbon->parse($timestamp)->format('Y-m-d')
                 )
                 ->orWhere(function ($query) use ($timestamp) {
                     $query->whereDate(
-                        'attempted_at',
+                        'dirs_gus.attempted_at',
                         '=',
                         $this->carbon->parse($timestamp)->format('Y-m-d')
                     )
                     ->whereTime(
-                        'attempted_at',
+                        'dirs_gus.attempted_at',
                         '<=',
                         $this->carbon->parse($timestamp)->format('H:i:s')
                     );
                 })
-                ->orWhere('attempted_at', null);
+                ->orWhereNull('dirs_gus.attempted_at');
             })
             ->orderBy('dirs_gus.attempted_at', 'asc')
             ->orderBy('dirs.id', 'asc')
@@ -97,7 +97,7 @@ class DirGusRepo
      * [attemptNow description]
      * @return bool [description]
      */
-    public function attemptedNow() : bool
+    public function attemptedNow(): bool
     {
         return $this->dirGus->update(['attempted_at' => $this->carbon->now()]);
     }
