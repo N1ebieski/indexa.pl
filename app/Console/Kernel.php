@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
 
          $schedule->call(App::make(\App\Crons\Dir\GusCron::class))
              ->name('GusCron')
-             ->monthlyOn(11, '08:00')
+             ->monthlyOn(20, '15:47')
              ->runInBackground();
 
         // $schedule->call(App::make(\App\Crons\Stat\Dir\StatCron::class))

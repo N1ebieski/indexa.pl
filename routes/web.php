@@ -13,6 +13,7 @@
 
 use App\Crons\Dir\GusCron;
 use App\Jobs\Dir\CheckGusJob;
+use Carbon\Carbon;
 use App\Models\Dir;
 use App\Models\DirGus;
 use App\Services\Factories\NipFactory;
